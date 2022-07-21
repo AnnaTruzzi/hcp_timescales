@@ -16,12 +16,12 @@ allrho1 = np.zeros((data.shape[0],data.shape[2]))
 allrho2 = np.zeros((data.shape[0],data.shape[2]))
 ar_list = []
 ma_list= []
-max_lag = 10
+max_lag = 100
 removelag0 = 1
 
 for sub in range(0,data.shape[0]):
     print(sub)
-    nlags=10
+    nlags=100
     xdata=np.arange(nlags)
 
     timescale = np.zeros((data.shape[2], nlags))

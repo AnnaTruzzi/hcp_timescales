@@ -39,8 +39,9 @@ for subind,sub in enumerate(sublist):
     # Download file from HCP S3. 
     hcpbucket = 'hcp-openaccess'
     sess='1'
-    hcpkey = f'HCP_1200/{sub}/MNINonLinear/Results/rfMRI_REST1_LR/rfMRI_REST{sess}_LR_Atlas.dtseries.nii'
+    #hcpkey = f'HCP_1200/{sub}/MNINonLinear/Results/rfMRI_REST1_LR/rfMRI_REST{sess}_LR_Atlas.dtseries.nii'
     #localfn = f'/tmp/{sub}-{sess}-timeseries.nii'
+    hcpkey = f'HCP_1200/{sub}/MNINonLinear/Results/rfMRI_REST1_LR/rfMRI_REST{sess}_LR_Atlas_MSMAll_hp2000_clean.dtseries.nii'
     localfn = f'/home/annatruzzi/hcp_timecourses/{sub}-{sess}-timeseries.nii'
     try:
         s3.download_file(hcpbucket, hcpkey, localfn)     
@@ -63,5 +64,5 @@ for subind,sub in enumerate(sublist):
     tc_by_roi[subind,:,:]=np.array([np.mean(task_dat_surf[:,roi_dat==x], axis=1) for x in list(set(roi_dat))]).T
     os.remove(localfn)
 
-np.save('tc_by_roi.npy', tc_by_roi)
+np.save('tc_by_roi_afterICA.npy', tc_by_roi)
 print(tc_by_roi.shape)
